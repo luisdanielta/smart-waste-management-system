@@ -11,5 +11,5 @@ Duración del pulso eco de salida (nivel TTL): 100-25000 μS.
 Tiempo mínimo de espera entre una medida y el inicio de otra 20 mS.
 Ángulo de apertura: 15º.
 
-[![HC-SR04]("./sensor_module.png")
+[![HC-SR04](sensor_module.png)
 
