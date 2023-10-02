@@ -2,13 +2,13 @@
 Sensor that will allow me to measure the level.
 
 ### Hardware Description
-- Tensión de alimentación: 5 Vcc.
-- Frecuencia de trabajo: 40 KHz.
-- Rango máximo: 4.5 m.
-- Rango mínimo: 2.0 cm.
-- Duración mínima del pulso de disparo (nivel TTL): 10 μS.
-- Duración del pulso eco de salida (nivel TTL): 100-25000 μS.
-- Tiempo mínimo de espera entre una medida y el inicio de otra 20 mS.
-- Ángulo de apertura: 15º.
+- Supply voltage: 5 Vdc.
+- Working frequency: 40 KHz.
+- Maximum range: 4.5 m.
+- Minimum range: 2.0 cm.
+- Minimum trigger pulse duration (TTL level): 10 μS.
+- Output echo pulse duration (TTL level): 100-25000 μS.
+- Minimum waiting time between a measurement and the start of another 20 mS.
+- Opening angle: 15º.
 
 ![HC-SR04](sensor_module.png)
