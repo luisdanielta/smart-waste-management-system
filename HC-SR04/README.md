@@ -11,4 +11,4 @@ Sensor that will allow me to measure the level.
 - Tiempo mínimo de espera entre una medida y el inicio de otra 20 mS.
 - Ángulo de apertura: 15º.
 
-[!HC-SR04](sensor_module.png)
+![HC-SR04](sensor_module.png)
