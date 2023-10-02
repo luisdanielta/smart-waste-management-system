@@ -1,0 +1,32 @@
+http://www.pcserviceselectronics.co.uk/arduino/Ultrasonic/betterecho.php
+
+
+measurement_t measurement;
+
+    float raw_data = 0;
+
+    /* trigger sensor */
+    gpio_set_level(TRIGGER_GPIO, 1);
+    set_delay(10);
+    gpio_set_level(TRIGGER_GPIO, 0);
+
+    /* wait for echo */
+    while (gpio_get_level(ECHO_GPIO) == 0)
+    {
+    }
+
+    measurement.time = esp_timer_get_time();
+    raw_data = measurement.time;
+
+    /* wait for echo end */
+    while (gpio_get_level(ECHO_GPIO) == 1)
+    {
+    }
+
+    measurement.time = esp_timer_get_time() - measurement.time;
+
+    /* calculate distance */
+    //measurement.distance = measurement.time * 0.034 / 2;
+
+    measurement.distance = raw_data;
+    return measurement;
