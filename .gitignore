@@ -1,3 +1,6 @@
 .DS_Store
 /container/HC-SR04/**/venv/
 /container/HC-SR04/**/build/
+
+/controller-container/esp-controller/**/build/
+/container/pi-container/**/build/
