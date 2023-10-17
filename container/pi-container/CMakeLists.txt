@@ -14,8 +14,9 @@ add_executable(main
     main.cpp
 )
 
+
 # add files motor_control.c and motor_control.h
-target_sources(main PRIVATE types.h)
+target_sources(main PRIVATE types.h core.h ultra_sonic.h)
 
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries(main pico_stdlib pico_multicore)
