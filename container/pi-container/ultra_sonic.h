@@ -32,10 +32,7 @@ protected:
         data.endTimeout = time_us_32();
     }
 
-    void clearData()
-    {
-        data = {};
-    }
+    bool clearData() return true ? data = {} : false;
 
 public:
     Ultrasonic(Gpio *triggerPin, Gpio *echoPin)
