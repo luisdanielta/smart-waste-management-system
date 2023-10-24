@@ -12,7 +12,7 @@ func main() {
 
 	/* build routing */
 	router := http.NewServeMux()
-	for _, route := range routes.Routes {
+	for _, route := range routes.MakeRoute {
 		router.HandleFunc(route.Url, routes.Handler(route.Func, route.Method))
 	}
 

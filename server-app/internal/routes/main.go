@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -18,7 +17,7 @@ func Handler(funcs []http.HandlerFunc, methods []string) http.HandlerFunc {
 		for i := 0; i < len(methods); i++ {
 			if r.Method == methods[i] {
 				w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
-				w.Header().Set("Access-Control-Allow-Methods", fmt.Sprintf("%s", methods[i]))
+				w.Header().Set("Access-Control-Allow-Methods", methods[i])
 				w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 				log.Printf("url: %s - method: %s", r.URL.Path, r.Method)
 				funcs[i](w, r)
@@ -37,6 +36,9 @@ func handleIndex(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-var Routes = []Route{
+var MakeRoute = []Route{ // List of the routes on server
 	{Url: "/", Func: []http.HandlerFunc{handleIndex}, Method: []string{"GET"}},
+
+	/* */
+
 }
