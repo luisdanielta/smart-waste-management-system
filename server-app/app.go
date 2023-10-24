@@ -18,9 +18,8 @@ func main() {
 
 	/* create server */
 	server := &http.Server{
-		Addr:    ":9095",
-		Handler: router,
-		// Good practice: enforce timeouts for servers you create!
+		Addr:         ":9095",
+		Handler:      router,
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}

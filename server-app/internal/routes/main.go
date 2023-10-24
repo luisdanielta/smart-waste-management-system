@@ -3,6 +3,7 @@ package routes
 import (
 	"log"
 	"net/http"
+	"swms-sa/internal/handlers"
 )
 
 type Route struct {
@@ -29,16 +30,10 @@ func Handler(funcs []http.HandlerFunc, methods []string) http.HandlerFunc {
 	}
 }
 
-func handleIndex(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.Error(w, "404 Not found", http.StatusNotFound)
-		return
-	}
-}
-
 var MakeRoute = []Route{ // List of the routes on server
-	{Url: "/", Func: []http.HandlerFunc{handleIndex}, Method: []string{"GET"}},
-
-	/* */
-
+	{ // Index
+		Url:    "/",
+		Func:   []http.HandlerFunc{handlers.HandleIndex},
+		Method: []string{"GET"},
+	},
 }
