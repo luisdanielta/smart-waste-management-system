@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"net/http"
 )
 
 type Error_t struct {
@@ -46,3 +47,5 @@ func (r *Response_t) Marshal() ([]byte, Error_t) {
 	jsonDataByte, r.Error.Err = json.Marshal(jsonData)
 	return jsonDataByte, r.Error
 }
+
+func (r *Response_t) Send(w http.ResponseWriter) {}

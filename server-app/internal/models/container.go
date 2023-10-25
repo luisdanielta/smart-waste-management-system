@@ -1,15 +1,22 @@
 package models
 
+import "gorm.io/gorm"
+
 type Data_t struct {
-	X int
-	Y int
-	Z int
+	X int `json:"x"`
+	Y int `json:"y"`
+	Z int `json:"z"`
 }
 
 type Container struct {
-	Name     string
-	Location Location_t
-	Usecase  string // School, park, etc.
-	Size     string // S, M, L - small, medium, large
-	Data     Data_t
+	gorm.Model
+	Id           int        `gorm:"primaryKey"`
+	ControllerId int        `gorm:"not null"`
+	Name         string     `gorm:"type:varchar(100);not null" json:"name"`
+	Location     Location_t `gorm:"type:json;not null" json:"location"`
+	Usecase      string     `gorm:"type:varchar(100);not null" json:"usecase"` // School, park, etc.
+	Size         string     `gorm:"type:varchar(100);not null" json:"size"`    // Small, medium, large
+	Data         Data_t     `gorm:"type:json;not null" json:"data"`
+
+	// Controller ControllerC `gorm:"foreignKey:ControllerId"`
 }

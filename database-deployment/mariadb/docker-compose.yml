@@ -1,0 +1,20 @@
+version: '2.1'
+
+services:
+    db:
+        image: mariadb:10.3
+        restart: unless-stopped
+        container_name: "mariadb_swms"
+        environment:
+            MYSQL_ROOT_PASSWORD: "swms-db-pwd"
+            MYSQL_DATABASE: "swms"
+            MYSQL_USER: "admin-swms"
+            MYSQL_PASSWORD: "swms-db-pwd"
+        volumes:
+            - mariadb_data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+
+volumes:
+    mariadb_data:
+      external: true
