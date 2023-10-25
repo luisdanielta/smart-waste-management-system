@@ -2,11 +2,20 @@ package handlers
 
 import (
 	"net/http"
+	tp "swms-sa/types"
 )
 
 func HandleIndex(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.Error(w, "404 Not found", http.StatusNotFound)
-		return
+
+	res := tp.Response_t{
+		StatusCode: http.StatusOK,
+		Data:       nil,
+		Message:    "Welcome to SWMS-SA",
+		Error:      tp.Error_t{},
+		Application: tp.Application_t{
+			Type: "application/json",
+		},
 	}
+
+	res.Send(w)
 }

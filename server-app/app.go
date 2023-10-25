@@ -17,7 +17,7 @@ func main() {
 	}
 
 	/* auto migrate */
-	// pkg.ConnDB.GetConn()
+	// db := pkg.ConnDB.GetConn()
 
 	// db.AutoMigrate(&models.ControllerC{})
 	// db.AutoMigrate(&models.Container{})

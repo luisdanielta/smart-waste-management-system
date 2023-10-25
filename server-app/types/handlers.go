@@ -1,21 +1,12 @@
-package handlers
+package types
 
 import (
 	"encoding/json"
 	"net/http"
 )
 
-type Error_t struct {
-	Code    int // Code error log
-	Message string
-	Result  bool
-	Err     error
-}
-
 type Application_t struct {
-	Type   string
-	Url    string
-	Method string
+	Type string
 }
 
 type Response_t struct {
@@ -38,9 +29,7 @@ func (r *Response_t) Marshal() ([]byte, Error_t) {
 			"result":  r.Error.Result,
 		},
 		"application": map[string]interface{}{
-			"type":   r.Application.Type,
-			"url":    r.Application.Url,
-			"method": r.Application.Method,
+			"type": r.Application.Type,
 		},
 	}
 
@@ -48,4 +37,11 @@ func (r *Response_t) Marshal() ([]byte, Error_t) {
 	return jsonDataByte, r.Error
 }
 
-func (r *Response_t) Send(w http.ResponseWriter) {}
+func (r *Response_t) Send(w http.ResponseWriter) {
+	jsonDataByte, err := r.Marshal()
+	if err.Err != nil {
+		panic(err.Err)
+	}
+	w.Header().Set("Content-Type", r.Application.Type)
+	w.Write(jsonDataByte)
+}
