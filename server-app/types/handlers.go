@@ -19,7 +19,7 @@ type Response_t struct {
 }
 
 // Marshal returns JSON-encoded response
-func (r *Response_t) Marshal() ([]byte, Error_t) {
+func (r *Response_t) Marshal() []byte {
 	var jsonDataByte []byte
 	jsonData := map[string]interface{}{
 		"status":  r.StatusCode,
@@ -35,13 +35,13 @@ func (r *Response_t) Marshal() ([]byte, Error_t) {
 		},
 	}
 
-	jsonDataByte, r.Error.Err = json.Marshal(jsonData)
-	return jsonDataByte, r.Error
+	jsonDataByte, r.Error.ERR = json.Marshal(jsonData)
+	r.Error.Check()
+	return jsonDataByte
 }
 
 func (r *Response_t) Send(w http.ResponseWriter) {
-	jsonDataByte, err := r.Marshal()
-	err.Check(err.Err)
+	jsonDataByte := r.Marshal()
 	w.Header().Set("Content-Type", r.Application.Type)
 	w.Header().Set("Access-Control-Allow-Methods", r.Application.Method)
 	w.WriteHeader(r.StatusCode)

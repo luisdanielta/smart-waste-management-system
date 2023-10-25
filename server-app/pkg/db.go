@@ -24,6 +24,10 @@ func (c *Conn) GetConn() *gorm.DB {
 		panic(err)
 	}
 	log.Println("Database connected, host:", c.Host, "port:", c.Port)
+
+	/* disable create deleted_at, updated_at, created_at */
+	db = db.Session(&gorm.Session{DisableNestedTransaction: true})
+
 	return db
 }
 

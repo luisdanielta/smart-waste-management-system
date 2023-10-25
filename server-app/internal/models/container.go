@@ -8,15 +8,15 @@ type Data_t struct {
 	Z int `json:"z"`
 }
 
-type Container struct {
+type Container_t struct {
 	gorm.Model
-	Id           int        `gorm:"primaryKey"`
-	ControllerId int        `gorm:"not null"`
-	Name         string     `gorm:"type:varchar(100);not null" json:"name"`
-	Location     Location_t `gorm:"type:json;not null" json:"location"`
-	Usecase      string     `gorm:"type:varchar(100);not null" json:"usecase"` // School, park, etc.
-	Size         string     `gorm:"type:varchar(100);not null" json:"size"`    // Small, medium, large
-	Data         Data_t     `gorm:"type:json;not null" json:"data"`
+	Id           int    `gorm:"primaryKey"`
+	ControllerId int    `gorm:"not null"`
+	Name         string `gorm:"type:varchar(100);not null" json:"name"`
+	Location     string `gorm:"type:varchar(254);not null" json:"location"`
+	Usecase      string `gorm:"type:varchar(100);not null" json:"usecase"` // School, park, etc.
+	Size         string `gorm:"type:varchar(100);not null" json:"size"`    // Small, medium, large
+	Data         Data_t `gorm:"type:json;not null" json:"data"`
 
 	// Controller ControllerC `gorm:"foreignKey:ControllerId"`
 }

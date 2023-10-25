@@ -1,27 +1,35 @@
 package types
 
-import "log"
+import (
+	"log"
+)
 
 type Error_t struct {
 	Code    int // Code error log
 	Message string
 	Result  bool
-	Err     error
+	ERR     error
+	Type    string
 }
 
-func (e *Error_t) Check(err error) {
-	if err != nil {
+func (e *Error_t) clean() { e = nil }
+
+func (e *Error_t) Check() {
+	if e.ERR != nil {
 		e.Code = 500
-		e.Message = "Internal Server Error"
+		e.Message = e.ERR.Error()
 		e.Result = false
-		e.Err = err
-		log.Println(err)
+		log.Printf("code: %d - message: %s - result: %t", e.Code, e.Message, e.Result)
+		e.clean()
+		return
 	}
 }
 
-/* test check error */
-/* func main() {
+/* test function check */
+/*
+func main() {
 	var err Error_t
-	err.Check(errors.New("test"))
-	fmt.Println(err)
-} */
+	err.ERR = errors.New("error")
+	err.Check()
+}
+*/

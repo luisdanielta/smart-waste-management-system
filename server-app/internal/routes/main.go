@@ -31,21 +31,26 @@ func Handler(funcs []http.HandlerFunc, methods []string) http.HandlerFunc {
 }
 
 var MakeRoute = []Route{ // List of the routes on server
-	{ // Index
+	{ /* / - GET */
 		Url:    "/",
 		Func:   []http.HandlerFunc{handlers.HandleIndex},
 		Method: []string{"GET"},
 	},
 
-	// Devices
+	/* /api/esp32/device - GET, POST, DELETE */
 	{
 		Url:    "/api/esp32/device",
-		Func:   nil,
+		Func:   []http.HandlerFunc{handlers.DeviceGet},
 		Method: []string{"GET"},
 	},
 	{
 		Url:    "/api/esp32/device/add",
 		Func:   []http.HandlerFunc{handlers.DevicePost},
 		Method: []string{"POST"},
+	},
+	{
+		Url:    "/api/esp32/device/delete",
+		Func:   []http.HandlerFunc{handlers.DeviceDelete},
+		Method: []string{"DELETE"},
 	},
 }
