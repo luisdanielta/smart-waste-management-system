@@ -7,29 +7,27 @@ import (
 )
 
 func DevicePost(w http.ResponseWriter, r *http.Request) {
-	var db = pkg.ConnDB.GetConn()
-	err := r.ParseForm()
-	if err != nil {
-		panic(err)
+
+	var err tp.Error_t
+	err.Check(r.ParseForm())
+
+	if !pkg.ValidateRequiredFields(r, []string{"name", "type", "location", "status"}) {
+		res := tp.Response_t{
+			StatusCode: http.StatusBadRequest,
+			Data:       nil,
+			Message:    "All fields are required",
+			Error:      err,
+			Application: tp.Application_t{
+				Type: "application/json",
+			},
+		}
+		res.Send(w)
+		return
 	}
+
+	/* database connection */
+	var db = pkg.ConnDB.GetConn()
 
 	pkg.ConnDB.CloseConn(db)
-}
 
-func DeviceGet(w http.ResponseWriter, r *http.Request) {
-	data := struct {
-		DeviceName string `json:"device_name"`
-		DeviceType string `json:"device_type"`
-	}{}
-
-	res := tp.Response_t{
-		StatusCode: http.StatusOK,
-		Data:       data,
-		Message:    "Device added successfully",
-		Error:      tp.Error_t{},
-		Application: tp.Application_t{
-			Type: "application/json",
-		},
-	}
-	res.Send(w)
 }

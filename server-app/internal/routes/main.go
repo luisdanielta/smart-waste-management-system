@@ -40,7 +40,7 @@ var MakeRoute = []Route{ // List of the routes on server
 	// Devices
 	{
 		Url:    "/api/esp32/device",
-		Func:   []http.HandlerFunc{handlers.DeviceGet},
+		Func:   nil,
 		Method: []string{"GET"},
 	},
 	{

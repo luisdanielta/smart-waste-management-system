@@ -6,7 +6,8 @@ import (
 )
 
 type Application_t struct {
-	Type string
+	Type   string
+	Method string
 }
 
 type Response_t struct {
@@ -21,8 +22,9 @@ type Response_t struct {
 func (r *Response_t) Marshal() ([]byte, Error_t) {
 	var jsonDataByte []byte
 	jsonData := map[string]interface{}{
-		"status": r.StatusCode,
-		"data":   r.Data,
+		"status":  r.StatusCode,
+		"data":    r.Data,
+		"message": r.Message,
 		"error": map[string]interface{}{
 			"code":    r.Error.Code,
 			"message": r.Error.Message,
@@ -39,9 +41,9 @@ func (r *Response_t) Marshal() ([]byte, Error_t) {
 
 func (r *Response_t) Send(w http.ResponseWriter) {
 	jsonDataByte, err := r.Marshal()
-	if err.Err != nil {
-		panic(err.Err)
-	}
+	err.Check(err.Err)
 	w.Header().Set("Content-Type", r.Application.Type)
+	w.Header().Set("Access-Control-Allow-Methods", r.Application.Method)
+	w.WriteHeader(r.StatusCode)
 	w.Write(jsonDataByte)
 }
