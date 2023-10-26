@@ -39,17 +39,22 @@ var MakeRoute = []Route{ // List of the routes on server
 
 	/* /api/esp32/device - GET, POST, DELETE */
 	{
-		Url:    "/api/esp32/device",
+		Url:    "/api/device/esp32",
 		Func:   []http.HandlerFunc{handlers.DeviceGet},
 		Method: []string{"GET"},
 	},
 	{
-		Url:    "/api/esp32/device/add",
+		Url:    "/api/device/esp32/all",
+		Func:   []http.HandlerFunc{handlers.DeviceGetAll},
+		Method: []string{"GET"},
+	},
+	{
+		Url:    "/api/device/esp32/add",
 		Func:   []http.HandlerFunc{handlers.DevicePost},
 		Method: []string{"POST"},
 	},
 	{
-		Url:    "/api/esp32/device/delete",
+		Url:    "/api/device/esp32/delete",
 		Func:   []http.HandlerFunc{handlers.DeviceDelete},
 		Method: []string{"DELETE"},
 	},

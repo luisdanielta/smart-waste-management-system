@@ -14,6 +14,7 @@ type ControllerC struct {
 	Battery  int    `gorm:"type:int;not null" json:"battery"`
 	Signal   int    `gorm:"type:int;not null" json:"signal"`
 	Location string `gorm:"type:varchar(254);not null" json:"location"`
+	Serial   string `gorm:"type:varchar(254);not null" json:"serial"`
 
 	/* config */
 	CreatedAt time.Time `gorm:"autoCreateTime:false"`

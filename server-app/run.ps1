@@ -15,6 +15,13 @@ elseif ($Option -eq "dev")
     air -c .air.toml
     exit 0
 }
+elseif ($Option -eq "prod")
+{
+    Write-Host "mode prod"
+    go build -o ./build/ app.go
+    ./build/app.exe
+    exit 0
+}
 elseif ($Option -eq "build")
 {
     Write-Host "mode build"

@@ -24,10 +24,66 @@ func DeviceGet(w http.ResponseWriter, r *http.Request) {
 	err.Check()
 	pkg.ConnDB.CloseConn(db)
 
+	if err.ERR != nil {
+		res := tp.Response_t{
+			StatusCode: http.StatusNotFound,
+			Data:       nil,
+			Message:    "Not found",
+			Error:      err,
+			Application: tp.Application_t{
+				Type: "application/json",
+			},
+		}
+		res.Send(w)
+		return
+	}
+
 	res := tp.Response_t{
 		StatusCode: http.StatusOK,
 		Data:       data,
-		Message:    "Success",
+		Message:    "Device found successfully",
+		Error:      err,
+		Application: tp.Application_t{
+			Type: "application/json",
+		},
+	}
+
+	res.Send(w)
+
+}
+
+func DeviceGetAll(w http.ResponseWriter, r *http.Request) {
+	var err tp.Error_t
+
+	/* database connection */
+	var db = pkg.ConnDB.GetConn()
+
+	// db.AutoMigrate(&models.ControllerC{})
+
+	/* get data from database */
+	var data []models.ControllerC
+	err.ERR = db.Find(&data).Error
+	err.Check()
+	pkg.ConnDB.CloseConn(db)
+
+	if err.ERR != nil {
+		res := tp.Response_t{
+			StatusCode: http.StatusNotFound,
+			Data:       nil,
+			Message:    "Not found",
+			Error:      err,
+			Application: tp.Application_t{
+				Type: "application/json",
+			},
+		}
+		res.Send(w)
+		return
+	}
+
+	res := tp.Response_t{
+		StatusCode: http.StatusOK,
+		Data:       data,
+		Message:    "Devices found successfully",
 		Error:      err,
 		Application: tp.Application_t{
 			Type: "application/json",
@@ -109,7 +165,7 @@ func DeviceDelete(w http.ResponseWriter, r *http.Request) {
 	res := tp.Response_t{
 		StatusCode: http.StatusOK,
 		Data:       nil,
-		Message:    "Success",
+		Message:    "Device deleted successfully",
 		Error:      err,
 		Application: tp.Application_t{
 			Type: "application/json",
