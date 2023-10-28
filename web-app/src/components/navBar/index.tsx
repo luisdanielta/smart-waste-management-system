@@ -4,6 +4,7 @@ import Avatar from "../ui/Avatar";
 export default function NavBar() {
   return (
     <nav className="container_navbar">
+      <div className="container_navbar_elements">
       <span
         style={{
           color: "#007AFF",
@@ -20,21 +21,24 @@ export default function NavBar() {
         <p>Home</p>
       </span>
 
-      <span className="container_avatar_navbar">
-        {/* user icon view */}
-        <p>Admin</p>
-        <Avatar
-          imgAvatar="https://avatars.githubusercontent.com/u/72309895?v=4"
-          nameAvatar="luisdanielta"
-        />
-        <span
-          style={{
-            color: "#007AFF",
-          }}
-        >
-          <p>Settings</p>
+    
+        <span className="container_avatar_navbar">
+          {/* user icon view */}
+          <p>Admin</p>
+          <Avatar
+            imgAvatar="https://avatars.githubusercontent.com/u/72309895?v=4"
+            nameAvatar="luisdanielta"
+          />
+          <span
+            style={{
+              color: "#007AFF",
+            }}
+          >
+            <p>Settings</p>
+          </span>
         </span>
-      </span>
+     
+      </div>
     </nav>
   );
 }

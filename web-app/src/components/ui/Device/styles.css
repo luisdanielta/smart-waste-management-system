@@ -1,0 +1,54 @@
+.container_device {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0.25rem 0 0.25rem 0;
+    padding: 1rem;
+}
+
+/* hover effect */
+.container_device:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+/* container_status_device */
+.container_status_device {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.status_p {
+    color: #32E74B;
+    background-color: #D4FBE1;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    border-radius: 0.2rem;
+}
+
+.status_p_offline {
+    color: #700B0B;
+    background-color: #FBC8C4;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    border-radius: 0.2rem;
+}
+
+/* name_ct_p  */
+.name_ct_p {
+    color: #007AFF;
+    background-color: #D4EAFB;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    border-radius: 0.2rem;
+} 
+
+.name_ct_p_offline {
+    color: #700B0B;
+    background-color: #FBC8C4;
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    border-radius: 0.2rem;
+}

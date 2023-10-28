@@ -1,4 +1,5 @@
 import { DeviceProps } from "./types";
+import "./styles.css"
 
 export default function Device({ idNumber, nameCT, status }: DeviceProps) {
   return (
@@ -6,13 +7,17 @@ export default function Device({ idNumber, nameCT, status }: DeviceProps) {
       <span>
         <p>Container Number: {idNumber}</p>
       </span>
-      <span>
-        <p>{status.statusValue}</p>
-        <p>{nameCT}</p>
+      <span className="container_status_device">
+        <p className={
+          status.statusValue === "Online" ? "status_p" : "status_p_offline"
+        }>{status.statusValue}</p>
+        <p className={
+          status.statusValue === "Online" ? "name_ct_p" : "name_ct_p_offline"
+        }>{nameCT}</p>
       </span>
       <span>
         <p>
-          Battery: {status.statusBattery} | Signal: {status.statusSignal}
+          Battery: {status.statusBattery}% | Signal: {status.statusSignal}%
         </p>
       </span>
     </div>

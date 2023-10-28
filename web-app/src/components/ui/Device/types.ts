@@ -9,6 +9,7 @@ interface DeviceProps {
   idNumber: string;
   nameCT: string;
   status: status_t;
+  className?: string;
 }
 
 export type { DeviceProps, status_t };
