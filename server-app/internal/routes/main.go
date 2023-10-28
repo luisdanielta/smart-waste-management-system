@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"swms-sa/internal/handlers"
+	"swms-sa/internal/handlers/devices"
 )
 
 type Route struct {
@@ -40,22 +41,33 @@ var MakeRoute = []Route{ // List of the routes on server
 	/* /api/esp32/device - GET, POST, DELETE */
 	{
 		Url:    "/api/device/esp32",
-		Func:   []http.HandlerFunc{handlers.DeviceGet},
+		Func:   []http.HandlerFunc{devices.DeviceEspGet},
 		Method: []string{"GET"},
 	},
 	{
 		Url:    "/api/device/esp32/all",
-		Func:   []http.HandlerFunc{handlers.DeviceGetAll},
+		Func:   []http.HandlerFunc{devices.DeviceEspGetAll},
 		Method: []string{"GET"},
 	},
 	{
 		Url:    "/api/device/esp32/add",
-		Func:   []http.HandlerFunc{handlers.DevicePost},
+		Func:   []http.HandlerFunc{devices.DeviceEspPost},
 		Method: []string{"POST"},
 	},
 	{
 		Url:    "/api/device/esp32/delete",
-		Func:   []http.HandlerFunc{handlers.DeviceDelete},
+		Func:   []http.HandlerFunc{devices.DeviceEspDelete},
 		Method: []string{"DELETE"},
+	},
+	/* /api/pi-pico/device - GET, POST, DELETE */
+	{
+		Url:    "/api/device/pi-pico/all",
+		Func:   []http.HandlerFunc{devices.DevicePicoGetAll},
+		Method: []string{"GET"},
+	},
+	{
+		Url:    "/api/device/pi-pico/add",
+		Func:   []http.HandlerFunc{devices.DevicePicoPost},
+		Method: []string{"POST"},
 	},
 }

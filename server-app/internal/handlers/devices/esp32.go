@@ -1,4 +1,4 @@
-package handlers
+package devices
 
 import (
 	"net/http"
@@ -7,7 +7,7 @@ import (
 	tp "swms-sa/types"
 )
 
-func DeviceGet(w http.ResponseWriter, r *http.Request) {
+func DeviceEspGet(w http.ResponseWriter, r *http.Request) {
 	var err tp.Error_t
 
 	queryParams := r.URL.Query()
@@ -52,7 +52,7 @@ func DeviceGet(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func DeviceGetAll(w http.ResponseWriter, r *http.Request) {
+func DeviceEspGetAll(w http.ResponseWriter, r *http.Request) {
 	var err tp.Error_t
 
 	/* database connection */
@@ -93,14 +93,14 @@ func DeviceGetAll(w http.ResponseWriter, r *http.Request) {
 	res.Send(w)
 }
 
-func DevicePost(w http.ResponseWriter, r *http.Request) {
+func DeviceEspPost(w http.ResponseWriter, r *http.Request) {
 
 	var err tp.Error_t
 
 	err.ERR = r.ParseForm()
 	err.Check()
 
-	if !pkg.ValidateRequiredFields(r, []string{"name", "ip"}) {
+	if !pkg.ValidateRequiredFields(r, []string{"name", "ip", "location", "serial"}) {
 		res := tp.Response_t{
 			StatusCode: http.StatusBadRequest,
 			Data:       nil,
@@ -120,10 +120,13 @@ func DevicePost(w http.ResponseWriter, r *http.Request) {
 	// db.AutoMigrate(&models.ControllerC{})
 
 	data := models.ControllerC{
-		Name:    r.FormValue("name"),
-		Ip:      r.FormValue("ip"),
-		Battery: 100,
-		Signal:  100,
+		Name:     r.FormValue("name"),
+		Ip:       r.FormValue("ip"),
+		Battery:  100,
+		Signal:   100,
+		Status:   true,
+		Location: r.FormValue("location"),
+		Serial:   r.FormValue("serial"),
 	}
 
 	data.SetStatus()
@@ -146,7 +149,7 @@ func DevicePost(w http.ResponseWriter, r *http.Request) {
 	res.Send(w)
 }
 
-func DeviceDelete(w http.ResponseWriter, r *http.Request) {
+func DeviceEspDelete(w http.ResponseWriter, r *http.Request) {
 	var err tp.Error_t
 
 	queryParams := r.URL.Query()
