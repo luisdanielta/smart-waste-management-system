@@ -6,8 +6,9 @@ export default function MapView() {
     <div className="map_view">
       <Map
         initialViewState={{
-          longitude: -122.4,
-          latitude: 37.8,
+            /*10.422366, -75.548598*/
+          longitude: -75.548598,
+          latitude: 10.422366,
           zoom: 14,
         }}
         style={{ height: 730 }}
