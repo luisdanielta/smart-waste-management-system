@@ -13,7 +13,6 @@ const getData = async () => {
   return data.data;
 };
 
-/* parse location "10.3710218,-75.4647328" */
 const parseLocation = (location: string) => {
   const [longitude, latitude] = location.split(",");
   return { latitude: parseFloat(latitude), longitude: parseFloat(longitude) };
