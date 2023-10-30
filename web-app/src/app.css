@@ -15,12 +15,6 @@
     flex-direction: column;
     /* background-color: aqua; */
     width: 100%;
-    margin: 0 5% 0 5%;
-    
-
-    @media screen and (max-width: 1350px) {
-        margin: 0 5% 0 5%;
-    }
 }
 
 .container_test {
@@ -40,12 +34,8 @@
 
 .widget_view {
     width: 50%;
-    height: 100%;
+    height: 700px;
     /* background-color: green; */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .container_devices {
@@ -90,7 +80,7 @@
     border-radius: 0.5rem;
 }
 
-.title{
+.title {
     font-size: 1.5rem;
     color: #000;
 }

@@ -7,7 +7,7 @@ export default function NavBar() {
   return (
     <nav className="container_navbar">
       <div className="container_navbar_elements">
-        <IconNavigation color="#007AFF" />
+        <IconNavigation color="#007AFF" className="icon_button" />
         <span className="container_avatar_navbar">
           <span className="container_avatar_navbar">
             {/* user icon view */}
@@ -17,7 +17,7 @@ export default function NavBar() {
               nameAvatar="luisdanielta"
             />
           </span>
-          <IconSettings color="#007AFF" />
+          <IconSettings color="#007AFF" className="icon_button" />
         </span>
       </div>
     </nav>

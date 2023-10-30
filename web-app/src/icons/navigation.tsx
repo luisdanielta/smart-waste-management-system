@@ -3,6 +3,8 @@ interface Props {
   color?: string;
 }
 
+import "./styles.css";
+
 const IconNavigation = (props: Props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
