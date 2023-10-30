@@ -58,7 +58,7 @@ while time.time() - start_time < 5:
         print(value)
         d.append(value[0])
         t.append(value[1])
-    
+
 esp32.disconnect()
 
 # Plot
