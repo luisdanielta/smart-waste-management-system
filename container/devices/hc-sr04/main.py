@@ -3,8 +3,8 @@ from matplotlib import pyplot as plt
 import time
 import numpy as np
 
-class Device:
 
+class Device:
     port: str  # serial port COM4 - \dev\ttyACM0
     baudrate: int  # 9600 - 115200
     device: serial.Serial
@@ -25,7 +25,7 @@ class Device:
 
     def read(self) -> str:
         if self.device.is_open:
-            data = self.device.readline() # read a '\n' terminated line
+            data = self.device.readline()  # read a '\n' terminated line
             return data.strip().decode("utf-8", "ignore")
         return None
 
@@ -33,17 +33,21 @@ class Device:
         self.device.write(data.encode("utf-8"))
 
 
-esp32 = Device('/dev/cu.usbserial-0001', 115200)
+esp32 = Device("/dev/cu.usbserial-0001", 115200)
 esp32.connect()
-time.sleep(1) # wait for the device to be ready
+time.sleep(1)  # wait for the device to be ready
+
 
 def splitData(value: str) -> list:
     # validate initial character is "D"
-    if value[0] != 'D':
+    if value[0] != "D":
         return
 
-    value = value.split(",") # Value #1: Data raw, Value #2: Time
-    value = [float(value[0].split(":")[1]), float(value[1].split(":")[1])] # Value #1: Data raw, Value #2: Time
+    value = value.split(",")  # Value #1: Data raw, Value #2: Time
+    value = [
+        float(value[0].split(":")[1]),
+        float(value[1].split(":")[1]),
+    ]  # Value #1: Data raw, Value #2: Time
     return value
 
 
@@ -58,7 +62,7 @@ while time.time() - start_time < 5:
         print(value)
         d.append(value[0])
         t.append(value[1])
-    
+
 esp32.disconnect()
 
 # Plot
